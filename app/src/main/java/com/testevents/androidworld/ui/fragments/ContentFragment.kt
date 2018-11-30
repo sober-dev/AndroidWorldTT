@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.testevents.androidworld.R
 import com.testevents.androidworld.models.ContentData
 import com.testevents.androidworld.network.SmartBoxApiService
+import com.testevents.androidworld.ui.activities.MainActivity
 import com.testevents.androidworld.ui.adapters.ContentAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -49,6 +50,7 @@ class ContentFragment : Fragment() {
         tabhost.setOnTabChangedListener {
             showContent(it)
         }
+
         val tabWidget = tabhost.tabWidget
         var i = 0
         val childCount = tabWidget.childCount
@@ -58,6 +60,12 @@ class ContentFragment : Fragment() {
         }
 
         loadContent()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).fullScreenMode(false)
+        (activity as MainActivity).setActionBarTitle(getString(R.string.app_name))
     }
 
     @SuppressLint("CheckResult")
@@ -93,6 +101,7 @@ class ContentFragment : Fragment() {
         else if (tabId == getString(R.string.shops))
             contentData.addAll(shops)
         contentAdapter.notifyDataSetChanged()
+        rv_tab_content.scrollToPosition(0)
     }
 
     private fun onItemClicked(item: ContentData) {

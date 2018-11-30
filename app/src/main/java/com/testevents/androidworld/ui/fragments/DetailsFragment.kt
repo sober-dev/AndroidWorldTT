@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import com.testevents.androidworld.R
+import com.testevents.androidworld.ui.activities.MainActivity
 import kotlinx.android.synthetic.main.fragment_details.*
 
 class DetailsFragment : Fragment() {
@@ -47,6 +48,15 @@ class DetailsFragment : Fragment() {
         btn_show_on_map.setOnClickListener {
             navigateToMapFragment()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).fullScreenMode(false)
+        if (type == "event")
+            (activity as MainActivity).setActionBarTitle(getString(R.string.events))
+        else if (type == "shop")
+            (activity as MainActivity).setActionBarTitle(getString(R.string.shops))
     }
 
     private fun navigateToMapFragment() {

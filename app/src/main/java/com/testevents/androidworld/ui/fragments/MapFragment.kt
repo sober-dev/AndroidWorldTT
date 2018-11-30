@@ -12,6 +12,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.testevents.androidworld.R
+import com.testevents.androidworld.ui.activities.MainActivity
 
 class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
@@ -36,6 +37,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).fullScreenMode(true)
+        (activity as MainActivity).setActionBarTitle(getString(R.string.app_name))
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

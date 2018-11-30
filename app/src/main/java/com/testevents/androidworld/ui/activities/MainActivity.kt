@@ -3,6 +3,7 @@ package com.testevents.androidworld.ui.activities
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import com.testevents.androidworld.R
 import com.testevents.androidworld.ui.fragments.ContentFragment
 
@@ -34,8 +35,24 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    fun setActionBarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
+    fun fullScreenMode(enabled: Boolean) {
+        if (enabled) {
+            supportActionBar?.hide()
+            window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        } else {
+            supportActionBar?.show()
+            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+        }
+    }
+
     private fun shouldDisplayHomeUp() {
         val canGoBack = supportFragmentManager.backStackEntryCount > 0
-        supportActionBar!!.setDisplayHomeAsUpEnabled(canGoBack)
+        supportActionBar?.setDisplayHomeAsUpEnabled(canGoBack)
     }
 }
