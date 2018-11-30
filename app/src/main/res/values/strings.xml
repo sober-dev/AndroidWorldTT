@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Android World</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBTR-wY5vUpBR-OHTlxRn2CVe98RDVdfTI</string>
+    <string name="show_on_map">Show on map</string>
+    <string name="events">Events</string>
+    <string name="shops">Shops</string>
+</resources>
